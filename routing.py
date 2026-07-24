@@ -64,7 +64,7 @@ for claim in claims:
         continue
 
     result = actions[route](claim)
-
+# the agent is google API
     print("-------------------")
     print("Claim:", claim["id"])
     print("Route:", route)
