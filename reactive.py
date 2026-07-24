@@ -1,3 +1,4 @@
+import json
 def reactive_agent(policy_active,
                          claim_covered,
                          documents_complete,
@@ -21,18 +22,20 @@ def reactive_agent(policy_active,
 
     return "Send Claim for Investigation."
 
-policy_active = input("Is the policy active? (yes/no): ").lower() == "yes"
-claim_covered = input("Is the claim covered? (yes/no): ").lower() == "yes"
-documents_complete = input("Are all required documents submitted? (yes/no): ").lower() == "yes"
-fraud_score = int(input("Enter fraud risk score (0-100): "))
-claim_amount = float(input("Enter claim amount ($): "))
+with open(r"C:\Users\nourm\Downloads\Documents\claims.json", "r") as file:
+    claims = json.load(file)
 
-result = reactive_agent(
-    policy_active,
-    claim_covered,
-    documents_complete,
-    fraud_score,
-    claim_amount
-)
+for claim in claims:
 
-print("\nDecision:", result)
+    result = reactive_agent(
+        claim["policy_active"],
+        claim["claim_covered"],
+        claim["documents_complete"],
+        claim["fraud_score"],
+        claim["claim_amount"]
+    )
+
+    print("-" * 20)
+    print(f"Claim ID: {claim['id']}")
+    print(f"Decision: {result}")
+
