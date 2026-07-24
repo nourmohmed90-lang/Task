@@ -39,3 +39,4 @@ for claim in claims:
     print(f"Claim ID: {claim['id']}")
     print(f"Decision: {result}")
 
+# Tip: Make a json file and enter the data of customers to make the code work
